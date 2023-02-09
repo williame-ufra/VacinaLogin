@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/VacinasLogin">
+<!--    <Resource 
+        name="jdbc/VacinasDB" 
+        type="javax.sql.DataSource" 
+        auth="Container" 
+        initialSize="3" 
+        maxActive="6" 
+        maxIdle="2" 
+        maxWaitMillis="10000" 
+        username="root"
+        password="root" 
+        url="jdbc:mysql://localhost:3306/vacinas" 
+        driverClassName="com.mysql.jdbc.Driver" 
+    />-->
+</Context>
