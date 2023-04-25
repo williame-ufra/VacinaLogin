@@ -22,6 +22,7 @@
 
             <p:commandButton action="/veterinario/animal.xhtml" value="Novo animal" rendered="#{not usuarioBean.perfilUsuario}"/>
             <p:commandButton action="racas.xhtml" value="Listar raças"/>
+            <p:commandButton action="/admin/usuarios.xhtml" value="Listar usuários" rendered="#{usuarioBean.administrador}"/>
 
             <br/>
             <br/>
