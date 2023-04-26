@@ -7,15 +7,16 @@ package br.edu.ufra.spring;
 
 import br.edu.ufra.entidade.Usuario;
 import br.edu.ufra.rn.UsuarioRN;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 /**
- *
  * @author Fabio
  */
 public class LoginHandler extends SimpleUrlAuthenticationSuccessHandler {
