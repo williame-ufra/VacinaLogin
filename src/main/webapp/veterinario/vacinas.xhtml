@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    template="/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    >
+
+    <ui:define name="title">
+        Vacinas do Animal
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="formAnimal">
+            <p:growl showDetail="true" showSummary="true" />
+            <h1>Vacinas do #{vacinaBean.animal.nome}</h1>
+            <h:inputHidden value="#{vacinaBean.animal.id}"/>
+            <h:panelGrid id="painelAnimal" columns="2">
+                <p:outputLabel value="Dono"/>
+                <p:inputText disabled="true" value="#{vacinaBean.animal.dono}"/>
+
+                <p:outputLabel value="Telefone"/>
+                <p:inputMask disabled="true" mask="999999999" value="#{vacinaBean.animal.telefone}"/>
+
+                <p:outputLabel value="Raça"/>
+                <p:inputText disabled="true" value="#{vacinaBean.animal.raca.nome}"/>
+
+                <p:outputLabel value="Tipo"/>
+                <p:selectOneMenu disabled="true" value="#{vacinaBean.animal.tipo}">
+                    <f:selectItem itemValue="C" itemLabel="Cachorro"/>
+                    <f:selectItem itemValue="G" itemLabel="Gato"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Nascimento"/>
+                <p:calendar disabled="true" value="#{vacinaBean.animal.nascimento}" pattern="dd/MM/yyyy"/>                
+            </h:panelGrid>
+
+            <h:panelGrid id="painelVacina" columns="2">
+                <f:facet name="header">
+                    <p:outputLabel value="Adicionar Vacina"/>
+                </f:facet>
+
+                <p:outputLabel value="Nome"/>
+                <p:inputText value="#{vacinaBean.vacina.nome}"/>
+
+                <p:outputLabel value="Data"/>
+                <p:calendar value="#{vacinaBean.vacina.data}" pattern="dd/MM/yyyy"/>
+            </h:panelGrid>
+            <p:button outcome="/usuario/animais.xhtml" value="Cancelar"/>
+            <p:commandButton action="#{vacinaBean.adicionar()}" value="Adicionar" ajax="false"/>
+
+            <p:dataTable value="#{vacinaBean.animal.vacinaList}" var="v">
+                <p:column headerText="Nome">
+                    <h:outputText value="#{v.nome}"/>
+                </p:column>
+
+                <p:column headerText="Data">
+                    <h:outputText value="#{v.data}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column >
+                    <p:commandButton value="Excluir" action="#{vacinaBean.excluir()}" update="@form">
+                        <f:setPropertyActionListener target="#{vacinaBean.vacina}" value="#{v}" />
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

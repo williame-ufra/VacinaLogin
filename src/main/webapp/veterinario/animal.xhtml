@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    template="/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    >
+
+    <ui:define name="title">
+        Cadastro/Edição de Animal
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="formAnimal">
+            <p:growl showDetail="true" showSummary="true" />
+            <h1>Cadastro de Animal</h1>
+            <h:inputHidden value="#{animalBean.animal.id}"/>
+            <h:panelGrid id="painel" columns="2">
+                <p:outputLabel value="Nome"/>
+                <p:inputText value="#{animalBean.animal.nome}"/>
+
+                <p:outputLabel value="Dono"/>
+                <p:inputText value="#{animalBean.animal.dono}"/>
+
+                <p:outputLabel value="Telefone"/>
+                <p:inputMask mask="999999999" value="#{animalBean.animal.telefone}"/>
+
+                <p:outputLabel value="Raça"/>
+                <p:selectOneMenu converter="racaConverter" value="#{animalBean.animal.raca}">
+                    <f:selectItem noSelectionOption="true" itemLabel="Selecione a raça"/>
+                    <f:selectItems value="#{racaBean.racas}" var="r" itemLabel="#{r.nome}" itemValue="#{r}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Tipo"/>
+                <p:selectOneMenu value="#{animalBean.animal.tipo}">
+                    <f:selectItem itemValue="C" itemLabel="Cachorro"/>
+                    <f:selectItem itemValue="G" itemLabel="Gato"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Nascimento"/>
+                <p:calendar value="#{animalBean.animal.nascimento}" pattern="dd/MM/yyyy"/>                
+            </h:panelGrid>
+            <p:button outcome="/usuario/animais.xhtml" value="Cancelar"/>
+            <p:commandButton action="#{animalBean.salvar()}" value="Salvar" ajax="false"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
